@@ -2,7 +2,7 @@
  * All helper functions for Database access are defined here
  */
 module.exports = (db) => {
-
+  // fetches most popular public quizzes
   const getQuizzes = function(limit = 3, category) {
     let queryString = `
     SELECT quizzes.*, COUNT(attempts.*) AS total_attempt
@@ -18,7 +18,11 @@ module.exports = (db) => {
     LIMIT $1    
     `;
     return db.query(queryString, [limit])
-      .then(res => res.rows);
+      .then(res => res.rows)
+      .catch(err => {
+        console.log(err.message);
+      });
+
   };
   return {getQuizzes};
 };
