@@ -43,11 +43,8 @@ const quizzesRoutes = require("./routes/quizzes");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-<<<<<<< HEAD
 app.use("/api/questions", questionsRoutes(db));
-=======
 app.use("/quizzes", quizzesRoutes(dbHelper));
->>>>>>> c5c660269036d14a90d3e0d96c2472a80e8aa5bd
 // Note: mount other resources here, using the same pattern above
 
 // Home page
