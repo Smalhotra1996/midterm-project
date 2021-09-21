@@ -34,23 +34,6 @@ module.exports = (db) => {
     FROM answers JOIN questions
     ON  question_id = questions.id
     JOIN quizzes ON quiz_id = quizzes.id
-<<<<<<< HEAD
-    JOIN users ON owner_id = users.id
-    WHERE question_id = $1
-    GROUP BY quizzes.title, users.name;
-    `
-
-    return   db.query(queryString, [question_id])
-      .then(response => {
-        return response.rows
-      })
-      .catch((err) => {
-        return err
-      })
-  }
-
-    return {getQuizzes, getAnswers};
-=======
     WHERE question_id=1
     GROUP BY quizzes.title;
     `;
@@ -203,7 +186,4 @@ module.exports = (db) => {
     getCorrectAnswer,
     addAttempt,
     getAttempt};
->>>>>>> c187357e92c775eaffc643fcbfc4838aec5cc76b
 };
-
-
