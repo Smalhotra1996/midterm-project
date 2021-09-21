@@ -1,4 +1,5 @@
-*
+
+/*
  * All helper functions for Database access are defined here
  */
 module.exports = (db) => {
