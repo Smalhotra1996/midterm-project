@@ -28,7 +28,7 @@ module.exports = (db) => {
 
   //loads a quiz to be taken by any user/guest
   router.get("/:quiz_id", (req, res) => {
-    
+
     db.getQuizWithQuizId(req.params.quiz_id)
       .then(result => {
         res.render("start_quiz", {quizData: result});
@@ -43,7 +43,7 @@ module.exports = (db) => {
   //load all the attempts for a given quiz
   //with function getAllAttempts(QuizID)
   router.get("/:quiz_id/attempts", (req, res) => {
-    
+
     db.getAllAttempts(req.params.quiz_id)
       .then(results => {
         console.log(results[0]["json_build_object"].quiz[0]);
@@ -62,7 +62,7 @@ module.exports = (db) => {
 
   // Submit Quiz and load results
   router.post("/:quiz_id/attempts", (req, res) => {
-    
+
     db.getCorrectAnswer(req.params.quiz_id)
       .then(results => {
         console.log(results);
@@ -79,7 +79,7 @@ module.exports = (db) => {
           quizId: req.params.quiz_id,
           score
         };
-        
+
         //console.log(attempt.user_id);
         db.addAttempt(attempt)
           .then(result => {
@@ -97,7 +97,7 @@ module.exports = (db) => {
 
   //load the results for a given quiz-attempt
   router.get("/:quiz_id/attempts/:attempt_id", (req, res) => {
-    
+
     db.getAttempt(req.params.attempt_id) // get attempt info
       .then(results => {
         if (results && req.params.quiz_id == results.quiz_id && req.params.attempt_id == results.id) { // if attempt exist and quiz_id match attempt's quiz

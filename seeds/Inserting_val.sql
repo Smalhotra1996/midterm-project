@@ -33,45 +33,59 @@ Each topic that are covered in 11 and 12 grade math, concepts is enlightened wit
 
 INSERT INTO questions (id, quiz_id, question)
  VALUES
-  (1,1,'1- What is the full form of SQL? a.Structured Query List  b.Structure Query Language  c.Sample Query Language'),
-  (2,1,'2- Which of the following is not a valid SQL type?  a. FLOAT  b. NUMERIC  c. DECIMAL  d. CHARACTER'),
-  (3,2,'1- Which of the following is not a DDL command?t  b) UPDATE and TRUNCATE c) SELECT and INSERT d) GRANT and REVOKE'),
-  (4,2,'2- Which of the following is not a DDL command? a) TRUNCATE b) ALTER c) CREATE d) UPDATE'),
-  (5,3,'Question 1.The correct description for boiling is a.Small bubbles breaking at the surface 98 degrees celsius. b.Large bubbles breaking at the surface 100 degrees celsius. c.No bubbles 95 degrees celsius.'),
-  (6,3,'Question 2.The correct description for simmering is. a.Small bubbles breaking at the surface 98 degrees celsius. b.Large bubbles breaking at the surface 100 degrees celsius. c.No bubbles 95 degrees celsius.'),
-  (7,3,'Question 3.The correct description for poaching is a.Half-covered with liquid, covered and cooked in the oven.b.
-  Completely covered with liquid, covered and cooked in the oven. c.Half-covered with liquid, covered and cooked on the stove.'),
+  (1,1,'1- What is the full form of SQL? a.Structured Query List  b.Structure Query Language '),
+  (2,1,'2- Which of the following is not a valid SQL type?    a. DECIMAL  b. CHARACTER'),
+  (3,2,'1- Which of the following is not a DDL command?t  a) SELECT and INSERT b)non'),
+  (4,2,'2- Which of the following is not a DDL command? a) TRUNCATE b) UPDATE'),
+  (5,3,'Question 1.The correct description for boiling is a.Small bubbles breaking at the surface 98 degrees celsius. b.Large bubbles breaking at the surface 100 degrees celsius. '),
+  (6,3,'Question 2.The correct description for simmering is. a.Small bubbles breaking at the surface 98 degrees celsius. b.No bubbles 95 degrees celsius.'),
+  (7,3,'Question 1.The correct description for poaching is a.Half-covered with liquid, covered and cooked in the oven.b.
+  Completely covered with liquid, covered and cooked in the oven.'),
   (8,4, 'How many right angles are there in a square?'),
   (9, 4, '10 + 9 ='),
   (10,5,'Q1. Is g(x) the inverse function of f(x)?f(x)=x–7  g(x)=x+7'),
   (11,5,'Q2.s f(x) the inverse function f g(x)?  f(x)=x–9   g(x)=x+9'),
   (12,6,'Q1. The lines that describe the outer edges of objects and figures are called _____.'),
   (13,6,'Q2.2. A drawing technique for shading using parallel lines that cross over other parallel lines,'),
-
   (14,7,'Q1. "How are you?" in French  a. Comment allez-vous ? b. quoi?' ),
   (15,7, 'Q2. How to answer "how are you? a)Je vais bien, et vous ? b.qui?'),
   (16,8,'Q1. The students in our college are _________ than other colleges students! a. smartter b smartest'),
-  (17,8,'Q2. How long ______ English?  a.do you learn  b. are you learning c.have you been learning d.you learn');
+  (17,8,'Q2. How long ______ English? a.have you been learning b.you learn');
 
 INSERT INTO answers(id,question_id,value, is_correct)
 VALUES
-(1,1,'a', TRUE),
-(2,1,'c', TRUE),
-(3,2,'d', TRUE),
-(4,2,'a', TRUE),
-(5,3,'b', TRUE),
-(6,3,'c', TRUE),
-(7,3,'b', TRUE),
-(8,4,4, TRUE),
-(9,4,19, TRUE),
-(10,5,'t', TRUE),
-(11,5,'t', TRUE),
-(12,6,'contour lines', TRUE),
-(13,6,'Hatching', TRUE),
-(14,7,'a', TRUE),
-(15,7,'a', TRUE),
-(16,8,'a', TRUE),
-(17,8,'c', TRUE);
+
+(1,1,'a.Structured Query List', TRUE),
+(2,1,'b.Structure Query Language ', FALSE),
+(3,1,'a. DECIMAL', TRUE),
+(4,1,'b. CHARACTER', FALSE),
+(5,2,'a) SELECT and INSERT ', FALSE),
+(6,2,'b)non', FALSE ),
+(7,2,'a) TRUNCATE ', FALSE),
+(8,2, 'b) UPDATE', FALSE),
+(9,3,'b.Large bubbles breaking at the surface 100 degrees celsius', TRUE),
+(10,3,'a.Small bubbles breaking at the surface 98 degrees celsius.', FALSE),
+(11,3,'b.No bubbles 95 degrees celsius', TRUE),
+(12,3,' a.Small bubbles breaking at the surface 98 degrees celsius.', FALSE),
+(13,3,'a.Half-covered with liquid, covered and cooked in the oven.', FLASE),
+(14,3,'b. Completely covered with liquid, covered and cooked in the oven', TRUE),
+(15,4,4, TRUE),
+(16,4,19, TRUE),
+(17,5,'t', TRUE),
+(18,5,'f, FALSE),
+(19,5,'t', TRUE),
+(20,5,'f, FALSE),
+(21,6,'contour lines', TRUE),
+(22,6,'Hatching', TRUE),
+(23,7,'a. Comment allez-vous ?', TRUE),
+(24,7,' b. quoi?', FALSE),
+(24,7,'a)Je vais bien', TRUE),
+(25,7,'b.qui?', FALSE),
+(26,8,'a. smartter', TRUE),
+(27,8,'b smartes', FALSE),
+(28,8,'a.have you been learning', TRUE),
+(26,8,'b.you learn', FALSE);
+
 
 
 INSERT INTO attempts( id,attempt_on,quiz_id, user_id,  score)
