@@ -24,7 +24,6 @@ module.exports = (db) => {
       });
 
   };
-<<<<<<< HEAD
   const quetAnswers = function() {
     let queryString  = `
     SELECT  quizzes.title, COUNT(answers.is_correct = 'TRUE')
@@ -36,7 +35,6 @@ module.exports = (db) => {
     `
   }
   return {getQuizzes};
-=======
 
   // get a quiz by id
   const getQuizWithQuizId = function(quizId) {
@@ -94,7 +92,6 @@ module.exports = (db) => {
   }; //return something similar to JSON
   return {getQuizzes,
     getQuizWithQuizId};
->>>>>>> feature/start-quiz
 };
 
 
