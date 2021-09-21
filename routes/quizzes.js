@@ -26,63 +26,17 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/add", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
+  //loads a quiz to be taken by any user/guest
+  router.get("/:quiz_id", (req, res) => {
+    
+    db.getQuizWithQuizId(req.params.quiz_id)
+      .then(result => {
+        res.render("start_quiz", {quizData: result});
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  router.get("/delete", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  router.get("/push", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  router.add("/add", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        console.log("query failed: ", err.stack);
+        res.statusCode = 404;
+        res.render("error", {error: "couldn't retrieve quiz"});
       });
   });
   return router;
