@@ -88,9 +88,100 @@ module.exports = (db) => {
     ;`, [quizId])
       .then(res => res.rows[0].quizzes.quiz[0]);
   }; //return something similar to JSON
+
+  //get all attempts given a quizID
+  const getAllAttempts = function(quizId) {
+    return db.query(`
+    WITH att AS (
+      SELECT
+        a.quiz_id,
+        COUNT(DISTINCT que.*) question_amount,
+        json_agg(
+        json_build_object(
+          'attempt_id', a.id,
+          'attempt_on', a.attempt_on,
+          'score', a.score,
+          'user_id', a.user_id
+          )
+        ) AS attempt
+      FROM attempts a
+      JOIN questions que ON a.quiz_id = que.quiz_id
+      WHERE a.quiz_id = $1
+      GROUP BY a.quiz_id
+    )
+    SELECT
+      json_build_object(
+        'quiz', json_agg(
+          json_build_object(
+            'creator', u.name,
+            'quiz_id', q.id,
+            'title', q.title,
+            'category', q.category,
+            'photo_url', q.photo_url,
+            'question_amount', att.question_amount,
+            'attempts', att.attempt
+          )
+        )
+      )
+    FROM quizzes q
+    JOIN att on q.id = quiz_id
+    JOIN users u ON owner_id = u.id;
+    `, [quizId])
+      .then(res => res.rows);
+  };
+
+  //return all correct answers' answer_id with the question_id
+  const getCorrectAnswer = function(quizId) {
+    return db.query(`
+    SELECT a.id answer_id, a.value correct_answer, que.id question_id
+    FROM quizzes q
+    JOIN questions que ON que.quiz_id = q.id
+    JOIN answers a ON a.question_id = que.id
+    WHERE q.id = $1 AND a.is_correct = TRUE;
+    `, [quizId])
+      .then(res => res.rows);
+  };
+  // will return Object of the newly added attempt with all info,
+  // Info shall check if valid before using this function.
+  const addAttempt = function(attempt) {
+    let queryString = `INSERT INTO attempts (quiz_id, `;
+    let queryParams = [attempt.quizId];
+    if (attempt.user_id) { // check if there is a userId
+      queryString += `user_id, `;
+      queryParams.push(attempt.user_id); //yes then add userid too
+    }
+    queryString += `score)
+    VALUES ($1, $2`;
+    if (attempt.user_id) {
+      queryString += `, $3`;
+    }
+    queryString += `)
+    RETURNING *;`;
+    queryParams.push(attempt.score);
+    return db.query(queryString, queryParams)
+      .then(res => res.rows[0]);
+  };
+  //get the attempt result with id
+  const getAttempt =  function(attemptId) {
+    return db.query(`
+    SELECT attempt_on, attempts.id, attempts.score, users.name AS user, users.id AS attempter_id, quizzes.title AS quiz_title, quizzes.id as quiz_id, COUNT(questions.*) AS question_amount
+    FROM attempts
+    LEFT JOIN users ON user_id = users.id
+    JOIN quizzes ON attempts.quiz_id = quizzes.id
+    JOIN questions ON questions.quiz_id = quizzes.id
+    WHERE attempts.id = $1
+    GROUP BY 1, 2, 3, 4, 5, 6, 7;
+    `, [attemptId])
+      .then(res => res.rows[0]);
+  }; // will return Object of the attempt.
+
   return {getQuizzes,
     getQuizWithQuizId,
-    quetAnswers};
+    quetAnswers,
+    getAllAttempts,
+    getCorrectAnswer,
+    addAttempt,
+    getAttempt};
 };
 
 
