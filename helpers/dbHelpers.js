@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> fcebc2bfa65eda5ffcd1169cf7f4a9d914b94732
 /*
  * All helper functions for Database access are defined here
  */
