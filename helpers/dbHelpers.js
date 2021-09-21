@@ -32,10 +32,8 @@ module.exports = (db) => {
     JOIN quizzes ON quiz_id = quizzes.id
     WHERE question_id=1
     GROUP BY quizzes.title;
-    `
-  }
-  return {getQuizzes};
-
+    `;
+  };
   // get a quiz by id
   const getQuizWithQuizId = function(quizId) {
     return db.query(`
@@ -91,7 +89,8 @@ module.exports = (db) => {
       .then(res => res.rows[0].quizzes.quiz[0]);
   }; //return something similar to JSON
   return {getQuizzes,
-    getQuizWithQuizId};
+    getQuizWithQuizId,
+    quetAnswers};
 };
 
 
