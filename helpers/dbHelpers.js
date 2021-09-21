@@ -24,17 +24,31 @@ module.exports = (db) => {
       });
 
   };
-  const quetAnswers = function() {
+  // get the answers from browser as answers
+  const getAnswers = function(answers) {
+    console.log(req.params)
+    const question_id = req.params.question_id;
+
     let queryString  = `
-    SELECT  quizzes.title, COUNT(answers.is_correct = 'TRUE')
+    SELECT  quizzes.title,users.name, COUNT(answers.is_correct = 'TRUE')
     FROM answers JOIN questions
     ON  question_id = questions.id
     JOIN quizzes ON quiz_id = quizzes.id
-    WHERE question_id=1
-    GROUP BY quizzes.title;
+    JOIN users ON owner_id = users.id
+    WHERE question_id = $1
+    GROUP BY quizzes.title, users.name;
     `
+
+    return   db.query(queryString, [question_id])
+      .then(response => {
+        return response.rows
+      })
+      .catch((err) => {
+        return err
+      })
   }
-  return {getQuizzes};
+
+    return {getQuizzes, getAnswers};
 };
 
 
