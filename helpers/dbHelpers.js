@@ -1,4 +1,4 @@
-/*
+*
  * All helper functions for Database access are defined here
  */
 module.exports = (db) => {
@@ -34,7 +34,6 @@ module.exports = (db) => {
     FROM answers JOIN questions
     ON  question_id = questions.id
     JOIN quizzes ON quiz_id = quizzes.id
-<<<<<<< HEAD
     WHERE question_id=1
     GROUP BY quizzes.title;
     `;
@@ -182,28 +181,9 @@ module.exports = (db) => {
 
   return {getQuizzes,
     getQuizWithQuizId,
-    quetAnswers,
+    getAnswers,
     getAllAttempts,
     getCorrectAnswer,
     addAttempt,
     getAttempt};
-=======
-    JOIN users ON owner_id = users.id
-    WHERE question_id = $1
-    GROUP BY quizzes.title, users.name;
-    `
-
-    return   db.query(queryString, [question_id])
-      .then(response => {
-        return response.rows
-      })
-      .catch((err) => {
-        return err
-      })
-  }
-
-    return {getQuizzes, getAnswers};
->>>>>>> feature/answers
 };
-
-
