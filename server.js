@@ -45,7 +45,7 @@ const answersRoutes = require("./routes/answers");
 app.use("/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/quizzes", quizzesRoutes(dbHelper));
-app.use("/api/questions", answersRoutes(dbHelper))
+app.use("/api/questions", answersRoutes(dbHelper));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

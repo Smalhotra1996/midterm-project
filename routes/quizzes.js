@@ -121,5 +121,51 @@ module.exports = (db) => {
       });
   });
 
+  //inserts a new quiz and redirects to "my quizzes" page
+  router.post("/", (req, res) => {
+   
+    const quizInfo = {
+      owner_id: 1,
+      questions: {}
+    };
+    let questionCounter = 1;
+    let answerCounter = 1;
+    const regex = /q\d/;
+    for (key in req.body) {
+      if (regex.test(key)) { //if it passes means it is in the form q1..etc
+        quizInfo.questions[questionCounter] = {
+          text: req.body[key][0],
+          answers: {}
+        };
+        //create and add the answer arrays
+        const lengthOfAnswerArray = req.body[key].length;
+        let isCorrect;
+        for (let i = 1; i < lengthOfAnswerArray - 1; i++) {
+          //return true only when the index of the current answer matches the last element of the array
+          isCorrect = (i === Number(req.body[key][lengthOfAnswerArray - 1])) ? true : false;
+          quizInfo.questions[questionCounter].answers[`${answerCounter}`] = [req.body[key][i], isCorrect];
+          answerCounter++;
+        }
+        questionCounter++;
+        answerCounter = 1;
+      } else {
+        quizInfo[key] = req.body[key];
+      }
+    }
+    db.addQuiz(quizInfo)
+      .then(
+        db.getQuizzes(3)
+          .then(quizzes => {
+            res.render("index", { quizzes });
+          })
+
+      )
+      .catch(err => {
+        console.log("query error", err.stack);
+      });
+    
+
+  });
+
   return router;
 };

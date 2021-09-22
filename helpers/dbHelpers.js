@@ -26,7 +26,7 @@ module.exports = (db) => {
   };
   // get the answers from browser as answers
   const getAnswers = function(answers) {
-    console.log(req.params)
+    console.log(req.params);
     const question_id = req.params.question_id;
 
     let queryString  = `
@@ -179,11 +179,51 @@ module.exports = (db) => {
       .then(res => res.rows[0]);
   }; // will return Object of the attempt.
 
+  const addQuiz = function(quiz) {
+    if (!quiz.visibility) quiz.visibility = "true";
+    let queryString = `
+      WITH quiz AS (
+      INSERT INTO quizzes (owner_id, title, description, visibility, photo_url, category)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id
+      )
+      `; // use with to pass quizID for questions insert
+    let queryParams = [ quiz.owner_id, quiz.title, quiz.description, quiz.visibility, quiz.photo_url, quiz.category ];
+    for (let question = Object.keys(quiz.questions).length; question > 0; question--) {
+      queryParams.push(quiz.questions[question].text);
+      queryString += `, q${question} AS(
+        INSERT INTO questions (quiz_id, question)
+        SELECT quiz.id, $${queryParams.length}
+        FROM   quiz
+        RETURNING id
+        )
+        `; // pass questionID for answer insert
+      for (let answer = Object.keys(quiz.questions[question].answers).length; answer > 0; answer--) {
+        queryParams.push(quiz.questions[question].answers[answer][0]);
+        queryString += `, q${question}a${answer} AS(
+          INSERT INTO answers (question_id, value, is_correct)
+          SELECT q${question}.id, $${queryParams.length}, $${queryParams.length + 1}
+          FROM   q${question}
+          )
+          `;
+        queryParams.push(quiz.questions[question].answers[answer][1]);
+      }
+    }
+    queryString += `
+    SELECT id
+    FROM quiz
+    ;`;
+    return db.query(queryString, queryParams)
+      .then(res => getQuizWithQuizId(res.rows[0].id)) //call upon getQuizWIthQuizId to return the whole quiz
+      .catch(e => e);
+  };
+  
   return {getQuizzes,
     getQuizWithQuizId,
     getAnswers,
     getAllAttempts,
     getCorrectAnswer,
     addAttempt,
-    getAttempt};
+    getAttempt,
+    addQuiz};
 };
