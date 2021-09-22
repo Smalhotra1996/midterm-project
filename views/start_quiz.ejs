@@ -20,32 +20,34 @@
 </head>
 <body>
   <%- include('partials/_header') %>
-  <main>
-    <h1><%= quizData.title %></h1>
-    <div>
+  <main class = "bgimage">
+    <h1 class = "style">
+      <u><%= quizData.title %></u>
+    </h1>
+    <div class = "questions">
       <form action="/quizzes/<%=quizData.quiz_id%>/attempts" method="POST">
         <% for (const question of quizData.questions) { %>
-          <div>
-            <div>
-              <%= question.question %>
-            </div><br>
-            <% for (const answer of question.answers) { %>
-
-              <input type="radio" name="<%=question.question_id%>" value="<%= answer.answer_id%>" id="<%= answer.answer_id%>">
-              <label for="<%= answer.answer_id%>"><%=answer.answer_value%></label><br>
+          <div class="questioncard">
+            <div class = "que">
+              <h5><%= question.question %></h5>
+            </div>
+            <br>
+            <div class = "options">
+              <% for (const answer of question.answers) { %>
+                <input type="radio" name="<%=question.question_id%>" value="<%= answer.answer_id%>" id="<%= answer.answer_id%>">
+                <label for="<%= answer.answer_id%>"><%=answer.answer_value%></label>
+                <br>
               <%}%>
+            </div>
           </div>
         <%}%>
 
-        <div>
-          <p>Click submit to view your results</p>
-          <button type="submit" class="btn-lg btn-primary">Submit</button>
-          
+        <div class = "submit">
+          <p><h5>Click submit to view your results</h5></p>
         </div>
+        <button type="submit" class="btn-lg btn-primary">Submit</button>
       </form>
-      
-    </div>  
-    
+    </div>
   </main>
 
   <!-- Bootstrap JS -->
