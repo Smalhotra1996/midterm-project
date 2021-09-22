@@ -1,10 +1,11 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
       <a class="navbar-brand" href="/">Quiz-App</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="/users/1/quizzes">My Quizzes</a>
@@ -12,18 +13,17 @@
             <a class="nav-item nav-link" href="/quizzes/">Public Quizzes</a>
           </div>
         </div>
-     
+
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link"  href="/users/login">Sign in</a>
             <a class="nav-item nav-link"  href="/users/new">Register</a>
             <a class="nav-item nav-link" style="margin-right: 1rem;"  href="">My Account</a>
             <form method="POST" action="/users/logout" style= "margin-bottom: 0px;">
-              <button type="submit" class="btn btn-outline-primary">Logout</button>
+              <button type="submit" class="btn btn-outline-light">Logout</button>
             </form>
           </div>
         </div>
-      
+
     </nav>
   </header>
-  
