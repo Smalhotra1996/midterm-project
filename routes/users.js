@@ -29,5 +29,23 @@ module.exports = (db) => {
     
   });
 
+  // users/:user_id/quizzes/:quiz_id GET - goes to quiz page with creator access
+  router.get('/:user_id/quizzes/:quiz_id', (req, res) => {
+    // Guest user for demo
+    const user_id = 1;
+    // get the quiz info
+    const quiz_id = (req.params.quiz_id);
+    db.getQuizWithQuizId(quiz_id)
+      .then(quiz => {
+        // quiz info here to render
+        const templateVars = { quiz: quiz, user_id: user_id };
+        // page rendering for quiz to be viewed by creator
+        res.render('user_quiz', templateVars);
+      })
+      .catch(e => res.send(e));
+    
+  });
+
+
   return router;
 };
