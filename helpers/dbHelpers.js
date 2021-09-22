@@ -231,7 +231,68 @@ module.exports = (db) => {
     `, [userId]) // this will shown newest first as default
       .then(res => res.rows);
   }; // will return array of Object containing all info from quiz table. Object Key [id, creator, title, description, visibilty, photo_url, category, total_attempts, average_score]
-  
+
+  //toggle visibility of quiz
+  const editVisibility =  function(quizId) {
+    return db.query(`
+    UPDATE quizzes
+    SET visibility = NOT visibility
+    WHERE id = $1
+    RETURNING *;
+    `, [quizId])
+      .then(res => res.rows[0]);
+  }; // return the new visibility state of the quiz
+
+  // will automatically call getQuizWithQuizId to return the updated quiz.
+  // needs further testing
+  const editQuiz =  function(newQuiz) {
+    let queryString = `WITH`;
+    let queryParams = [];
+    let quesCount = Object.keys(newQuiz.questions).length; //since it no questions no long order from 1, get count
+    let ansCount = -2;// counter start at negative untill condition hit
+    for (const question in newQuiz.questions) {
+      quesCount--;
+      queryParams.push(newQuiz.questions[question].text);
+      queryString += ` u${queryParams.length} AS (
+      UPDATE questions
+      SET question = $${queryParams.length}
+      WHERE id = ${question}
+      ),`;
+      for (const answer in newQuiz.questions[question].answers) {
+        if (quesCount === 0 && ansCount < 0) {
+          ansCount = Object.keys(newQuiz.questions[question].answers).length - 1; //reset ansCoount for last question
+        }
+        if (ansCount === 0) { // if last answer, end the chain by not adding ,
+          queryParams.push(newQuiz.questions[question].answers[answer][0]);
+          queryString += ` u${queryParams.length} AS (
+            UPDATE answers
+            SET value = $${queryParams.length}, is_correct = $${queryParams.length + 1}
+            WHERE id = ${answer}
+            )`;
+          queryParams.push(newQuiz.questions[question].answers[answer][1]);
+        } else {
+          queryParams.push(newQuiz.questions[question].answers[answer][0]);
+          queryString += ` u${queryParams.length} AS (
+            UPDATE answers
+            SET value = $${queryParams.length}, is_correct = $${queryParams.length + 1}
+            WHERE id = ${answer}
+            ),`;
+          queryParams.push(newQuiz.questions[question].answers[answer][1]);
+        }
+        ansCount--;
+      }
+    }
+    queryString += `
+    UPDATE quizzes
+    SET title = $${queryParams.length + 1}, description = $${queryParams.length + 2}, visibility = $${queryParams.length + 3}, photo_url = $${queryParams.length + 4}, category = $${queryParams.length + 5}
+    WHERE id = $${queryParams.length + 6}
+    RETURNING *;
+    `;
+    queryParams.push(newQuiz.title, newQuiz.description, newQuiz.visibility, newQuiz.photo_url, newQuiz.category, newQuiz.quizId);
+    return db.query(queryString, queryParams)
+      .then(res => getQuizWithQuizId(res.rows[0].id));
+  };
+
   return {getQuizzes,
     getQuizWithQuizId,
     getAnswers,
@@ -240,5 +301,7 @@ module.exports = (db) => {
     addAttempt,
     getAttempt,
     addQuiz,
-    getQuizzesByUserId};
+    getQuizzesByUserId,
+    editVisibility,
+    editQuiz};
 };

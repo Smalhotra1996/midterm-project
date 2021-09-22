@@ -48,7 +48,7 @@ module.exports = (db) => {
 
   // users/:user_id/quizzes/:quiz_id/edit GET - goes to quiz edit page with creator access
   router.get('/:user_id/quizzes/:quiz_id/edit', (req, res) => {
-    const user_id = 1;    
+    const user_id = 1;
     const quiz_id = (req.params.quiz_id);
     db.getQuizWithQuizId(quiz_id)
       .then(quiz => {
@@ -69,6 +69,69 @@ module.exports = (db) => {
           
       })
       .catch(e => res.send(e));
+    
+  });
+
+  // added visibility change to update quiz page
+  // users/:user_id/quizzes/:quiz_id/edit POST - change visibility
+  router.post('/:user_id/quizzes/:quiz_id/edit', (req, res) => {
+    const quiz_id = req.params.quiz_id;
+    db.editVisibility(quiz_id)
+      .then(result => {
+        res.redirect(`back`);
+      })
+      .catch(e => {
+        res.status(500).send(e);
+      });
+  });
+
+  // users/:user_id/quizzes/:quiz_id POST - update quiz info from edit page
+  router.post('/:user_id/quizzes/:quiz_id', (req, res) => {
+
+    // extract quiz_id from req params
+    const user_id = 1;
+    const quiz_id = req.params.quiz_id;
+    
+    // get quiz details to make newQuiz obj
+    const newQuiz = {
+      quizId : quiz_id,
+      owner_id: user_id,
+      title: req.body.title,
+      description: req.body.description,
+      photo_url: req.body.photo_url,
+      category: req.body.category,
+      visibility: req.body.visibility,
+      questions: {}
+    };
+
+    // remove the keys from req.body
+    delete req.body.title;
+    delete req.body.description;
+    delete req.body.photo_url;
+    delete req.body.category;
+    delete req.body.visibility;
+
+    // Messy Creation of the new Quiz Object questions
+    let formArray = Object.keys(req.body); //quiz_id
+    // console.log(formArray)
+    let questions = [];
+    let answerVal = [];
+    let count = 0;
+    for (let i = 0; i < formArray.length; i ++) {
+      if (formArray[i].split("A")[1]) {
+        newQuiz.questions[formArray[i].split("Q")[1].split("A")[0]].answers[formArray[i].split("A")[1]] = [req.body[formArray[i]], false]; // add answer
+      } else if (formArray[i].split("_")[1]) {
+        newQuiz.questions[formArray[i].split("_")[1]].answers[req.body[formArray[i]]][1] = true; // add the correct answer
+      } else {
+        newQuiz.questions[formArray[i].split("Q")[1]] = { text : req.body[formArray[i]], answers : {}}; // add question
+      }
+
+
+    }
+    
+    db.editQuiz(newQuiz)
+      .then(res.redirect(`/users/${user_id}/quizzes/${quiz_id}`))
+      .catch(e => console.log(e));
     
   });
 
