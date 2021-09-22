@@ -8,12 +8,12 @@ module.exports = ({getAnswers}) => {
 
     getAnswers()
       .then(response => {
-        console.log(response)
+        console.log(response);
         res.send('h');
       })
       .catch((err)=> {
         console.log(err);
-      })
-  })
+      });
+  });
   return router;
 };
