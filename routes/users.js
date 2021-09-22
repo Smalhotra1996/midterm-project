@@ -46,6 +46,31 @@ module.exports = (db) => {
     
   });
 
+  // users/:user_id/quizzes/:quiz_id/edit GET - goes to quiz edit page with creator access
+  router.get('/:user_id/quizzes/:quiz_id/edit', (req, res) => {
+    const user_id = 1;    
+    const quiz_id = (req.params.quiz_id);
+    db.getQuizWithQuizId(quiz_id)
+      .then(quiz => {
+
+        let orderQues = quiz.questions;
+        orderQues.sort(function(a, b) {
+          let keyA = a.question_id;
+          let keyB = b.question_id;
+          if (keyA < keyB) return -1;
+          if (keyA > keyB) return 1;
+          return 0;
+        });
+
+        // quiz info here to render
+        const templateVars = { quiz: quiz, user_id: user_id };
+        // render the page with the fields for edit
+        res.render('user_quiz_edit', templateVars);
+          
+      })
+      .catch(e => res.send(e));
+    
+  });
 
   return router;
 };
