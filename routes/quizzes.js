@@ -156,7 +156,7 @@ module.exports = (db) => {
       .then(
         db.getQuizzes(3)
           .then(quizzes => {
-            res.render("index", { quizzes });
+            res.redirect("/users/1/quizzes");
           })
 
       )
