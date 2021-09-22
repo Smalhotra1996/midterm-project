@@ -62,7 +62,7 @@ function copyUrl() {
         <!--if the attempter is logged in and viewing his own attempt-->
         <!--Give custom msg and color based on score-->
         <% if (percentage === 1) { %>
-          <h2>Congratulation, <%= name %>!</h3>
+          <h2 class = "user">Congratulation, <%= name %>!</h2>
           <p class="smaller">You have scored</p>
           <p class="perfect"><%= score %>/<%= numOfQuestions %></p>
           <p class="smaller">on the quiz</p>
@@ -119,7 +119,7 @@ function copyUrl() {
         <div class="react">
           <button class="btn btn-outline-success" onclick="copyUrl();">Share result?</button>
           <form method="GET" action="/quizzes/<%= quiz_id %>">
-            <button id="btn-sapcing" class="btn btn-outline-primary" type="submit">Try this quiz?</button>
+            <button id="btn-sapcing" class="btnbox" type="submit">Try this quiz?</button>
           </form>
         </div>
       <% } %>
