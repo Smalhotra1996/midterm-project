@@ -21,5 +21,10 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  // users/:user_id/quizzes/new GET - if logged in, take to new quizzes page
+  router.get("/:user_id/quizzes/new", (req, res) => {
+    res.render("new_quiz");  
+  });
   return router;
 };
