@@ -1,0 +1,32 @@
+
+.new-quiz-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+
+}
+
+label{
+  padding: .5em;
+}
+
+
+.new-quiz-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.table td, .table th {
+  padding: non;
+  vertical-align: top;
+  border-top:none
+}
+
+.btns{
+  display: flex;
+}
+
+button.btn.btn-outline-danger{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
