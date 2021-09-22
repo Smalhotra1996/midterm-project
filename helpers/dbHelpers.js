@@ -293,6 +293,16 @@ module.exports = (db) => {
       .then(res => getQuizWithQuizId(res.rows[0].id));
   };
 
+  // will return Object of the removed quiz with all info
+  const removeQuiz =  function(quizId) {
+    return db.query(`
+    DELETE FROM quizzes CASCADE
+    WHERE id = $1
+    RETURNING *;
+    `, [quizId])
+      .then(res => res.rows[0]);
+  };
+
   return {getQuizzes,
     getQuizWithQuizId,
     getAnswers,
@@ -303,5 +313,6 @@ module.exports = (db) => {
     addQuiz,
     getQuizzesByUserId,
     editVisibility,
-    editQuiz};
+    editQuiz,
+    removeQuiz};
 };

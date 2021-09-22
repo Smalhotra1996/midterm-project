@@ -135,5 +135,22 @@ module.exports = (db) => {
     
   });
 
+  // users/:user_id/quizzies/:quiz_id/delete - deletes quiz from quizzes db
+  router.post('/:user_id/quizzes/:quiz_id/delete', (req, res) => {
+    
+    const quiz_id = Number(req.params.quiz_id);
+    db.getQuizWithQuizId(quiz_id)
+      .then(quiz => {
+        db.removeQuiz(quiz.quiz_id)
+          .then(result => {
+            // redirect to user's quizzes page
+            res.redirect(`../`);
+          })
+          .catch(e => res.send(e));
+        
+      });
+    
+  });
+
   return router;
 };
