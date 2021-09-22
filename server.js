@@ -42,7 +42,7 @@ const answersRoutes = require("./routes/answers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/users", usersRoutes(db));
+app.use("/users", usersRoutes(dbHelper));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/quizzes", quizzesRoutes(dbHelper));
 app.use("/api/questions", answersRoutes(dbHelper));

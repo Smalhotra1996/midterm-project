@@ -217,6 +217,20 @@ module.exports = (db) => {
       .then(res => getQuizWithQuizId(res.rows[0].id)) //call upon getQuizWIthQuizId to return the whole quiz
       .catch(e => e);
   };
+
+  // get all quiz from a certain user
+  const getQuizzesByUserId = function(userId) {
+    return db.query(`
+    SELECT quizzes.id, users.name AS creator, users.id AS creator_id, quizzes.title, quizzes.description, quizzes.visibility, quizzes.photo_url, quizzes.category, COUNT(attempts.*) AS total_attempts, ROUND(AVG(attempts.score), 1) AS average_score
+    FROM quizzes
+    JOIN users ON owner_id = users.id
+    LEFT JOIN attempts ON quiz_id = quizzes.id
+    WHERE owner_id = $1
+    GROUP BY quizzes.id, users.name, users.id
+    ORDER BY quizzes.id DESC;
+    `, [userId]) // this will shown newest first as default
+      .then(res => res.rows);
+  }; // will return array of Object containing all info from quiz table. Object Key [id, creator, title, description, visibilty, photo_url, category, total_attempts, average_score]
   
   return {getQuizzes,
     getQuizWithQuizId,
@@ -225,5 +239,6 @@ module.exports = (db) => {
     getCorrectAnswer,
     addAttempt,
     getAttempt,
-    addQuiz};
+    addQuiz,
+    getQuizzesByUserId};
 };

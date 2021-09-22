@@ -9,22 +9,25 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
   // users/:user_id/quizzes/new GET - if logged in, take to new quizzes page
   router.get("/:user_id/quizzes/new", (req, res) => {
     res.render("new_quiz");
   });
+
+  // users/:user_id/quizzes GET - goes to user all quizzes page, have all quizzes displayed in table
+  router.get('/:user_id/quizzes', (req, res) => {
+    
+    db.getQuizzesByUserId(1)
+      .then(quizzes => {
+        // quizzes should be all the quiz that belongs to the user_id
+        // given back as an array of objects
+        const templateVars = {user_id: 1, quizzes: quizzes};
+        // render page that will show all quizzes into table
+        res.render("user_quizzes", templateVars);
+      })
+      .catch(e => res.send(e));
+    
+  });
+
   return router;
 };
