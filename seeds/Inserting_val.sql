@@ -67,28 +67,28 @@ VALUES
 (10,3,'a.Small bubbles breaking at the surface 98 degrees celsius.', FALSE),
 (11,3,'b.No bubbles 95 degrees celsius', TRUE),
 (12,3,' a.Small bubbles breaking at the surface 98 degrees celsius.', FALSE),
-(13,3,'a.Half-covered with liquid, covered and cooked in the oven.', FLASE),
+(13,3,'a.Half-covered with liquid, covered and cooked in the oven.', FALSE),
 (14,3,'b. Completely covered with liquid, covered and cooked in the oven', TRUE),
 (15,4,4, TRUE),
 (16,4,19, TRUE),
 (17,5,'t', TRUE),
-(18,5,'f, FALSE),
+(18,5,'f', FALSE),
 (19,5,'t', TRUE),
-(20,5,'f, FALSE),
+(20,5,'f', FALSE),
 (21,6,'contour lines', TRUE),
 (22,6,'Hatching', TRUE),
 (23,7,'a. Comment allez-vous ?', TRUE),
 (24,7,' b. quoi?', FALSE),
-(24,7,'a)Je vais bien', TRUE),
-(25,7,'b.qui?', FALSE),
-(26,8,'a. smartter', TRUE),
-(27,8,'b smartes', FALSE),
-(28,8,'a.have you been learning', TRUE),
-(26,8,'b.you learn', FALSE);
+(25,7,'a)Je vais bien', TRUE),
+(26,7,'b.qui?', FALSE),
+(27,8,'a. smartter', TRUE),
+(28,8,'b smartes', FALSE),
+(29,8,'a.have you been learning', TRUE),
+(30,8,'b.you learn', FALSE);
 
 
 
-INSERT INTO attempts( id,attempt_on,quiz_id, user_id,  score)
+INSERT INTO attempts(id,attempt_on,quiz_id, user_id,  score)
 VALUES
 (1,'2021-01-01',3,2,0.7),
 (2,'2020-02-03',1,2,0.6),
@@ -100,13 +100,13 @@ VALUES
 (8,'2020-02-03',7,4,0.8),
 (9,'2020-01-01',8,8,0.5),
 (10,'2021-01-01',3,2,0.7),
-(12,'2020-02-03',2,4,0.8),
-(13,'2020-01-01',5,7,0.5),
-(14,'2021-01-01',3,2,0.7),
-(15,'2019-02-03',6,4,0.8),
-(16,'2020-01-01',5,8, 0.5),
-(17,'2021-01-01',3,2,0.7),
-(18,'2020-02-03',7,4,0.9),
-(19,'2020-01-01',8,1,1),
-(20,'2020-02-11',1,1,0.6 );
+(11,'2020-02-03',2,4,0.8),
+(12,'2020-01-01',5,7,0.5),
+(13,'2021-01-01',3,2,0.7),
+(14,'2019-02-03',6,4,0.8),
+(15,'2020-01-01',5,8, 0.5),
+(16,'2021-01-01',3,2,0.7),
+(17,'2020-02-03',7,4,0.9),
+(18,'2020-01-01',8,1,1),
+(19,'2020-02-11',1,1,0.6);
 

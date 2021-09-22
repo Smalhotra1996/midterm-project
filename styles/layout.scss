@@ -1,9 +1,75 @@
-// See: https://sass-lang.com/
-
 body {
   background-color: #EEE;
+}
 
-  h1 {
-    color: #244751;
-  }
+body h1 {
+  color: #244751;
+}
+
+.style {
+  display:flex;
+  justify-content: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 0em;
+}
+
+.questions {
+  width: 100vw;
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.questioncard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  padding-bottom: 15px;
+  border-radius: 10%;
+  border-radius: 25px;
+  border-style: solid;
+  border-color: #010101;
+  padding: 25px;
+  margin-bottom: 15px;
+  background-color: #7abecf;
+}
+
+.que{
+  font-size: 1em;
+  background-color: #00000000;
+
+  height: 50px;
+  padding:2em;
+}
+
+.options {
+  
+  background-color: #00000000;
+  padding:2em;
+}
+
+.bgimage{
+  background-color: #ffffff;
+}
+
+.submit {
+  padding:2em;
+  display:flex;
+  justify-content: left;
+  
+  
+}
+
+.navbar-nav{
+  display: flex;
+  justify-content: right;
 }

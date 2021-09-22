@@ -148,8 +148,8 @@ module.exports = (db) => {
   // will return Object of the newly added attempt with all info,
   // Info shall check if valid before using this function.
   const addAttempt = function(attempt) {
-    let queryString = `INSERT INTO attempts (quiz_id, `;
-    let queryParams = [attempt.quizId];
+    let queryString = `INSERT INTO attempts(quiz_id, `;
+    let queryParams = [parseInt(attempt.quizId)];
     if (attempt.user_id) { // check if there is a userId
       queryString += `user_id, `;
       queryParams.push(attempt.user_id); //yes then add userid too
