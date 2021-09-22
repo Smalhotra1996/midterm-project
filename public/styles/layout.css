@@ -7,7 +7,7 @@ body h1 {
 }
 
 .style {
-  display:flex;
+  display: flex;
   justify-content: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 0em;
@@ -15,7 +15,6 @@ body h1 {
 
 .questions {
   width: 100vw;
- 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,36 +39,32 @@ form {
   border-color: #010101;
   padding: 25px;
   margin-bottom: 15px;
-  background-color: #a4d5e1;
+  background-color: #7abecf;
 }
 
-.que{
+.que {
   font-size: 1em;
   background-color: #00000000;
-
   height: 50px;
-  padding:2em;
+  padding: 2em;
 }
 
 .options {
-  
   background-color: #00000000;
-  padding:2em;
+  padding: 2em;
 }
 
-.bgimage{
+.bgimage {
   background-color: #ffffff;
 }
 
 .submit {
-  padding:2em;
-  display:flex;
+  padding: 2em;
+  display: flex;
   justify-content: left;
-  
-  
 }
 
-.navbar-nav{
+.navbar-nav {
   display: flex;
   justify-content: right;
 }

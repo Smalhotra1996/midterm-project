@@ -83,6 +83,7 @@ module.exports = (db) => {
         //console.log(attempt.user_id);
         db.addAttempt(attempt)
           .then(result => {
+            console.log(result);
             const url = '/quizzes/' + result.quiz_id + '/attempts/' + result.id;
             res.redirect(url);
           })
