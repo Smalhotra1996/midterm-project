@@ -8,7 +8,8 @@ body h1 {
   display: flex;
   justify-content: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  padding: 0em;
+  padding: 1em;
+  font-size:40px;
 }
 .questions {
   width: 100vw;
@@ -34,7 +35,7 @@ form {
   border-color: #010101;
   padding: 25px;
   margin-bottom: 15px;
-  background-color: #7ABECF;
+  background-color:whitesmoke;
 }
 .que {
   font-size: 1em;
@@ -96,4 +97,7 @@ form {
 .fail {
   color:red;
   font-size: 40px;
+}
+.options{
+  padding:1em;
 }
