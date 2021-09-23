@@ -34,6 +34,10 @@ div:nth-child(3)  div  a{
   white-space: nowrap;
   overflow: hidden;
 }
+.img:hover{
+  border: 5px solid  #07495c;
+  box-shadow: #60a7bb;
+}
 
 
 

@@ -39,3 +39,8 @@ img{
   max-width: 35%;
   margin-bottom: 1em;
 }
+
+
+body > div.quiz-details > div > div > div.quiz-detail-display.border-left.border-info {
+  background-color: blueviolet;
+}
