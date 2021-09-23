@@ -1,0 +1,16 @@
+main {
+  margin: 2em;
+}
+
+h2{
+  margin: 1em;
+}
+img{
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+.container all-quizzes{
+  display: flex;
+  flex-direction: column;
+}
