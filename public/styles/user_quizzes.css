@@ -3,6 +3,7 @@ h1 {
 }
 main{
   background-color: #ffffff;
+  margin: 1em;
 }
 form:nth-child(1) button{
   border:none;
@@ -19,4 +20,6 @@ form:nth-child(4) button{
 
 img{
   margin-left: 2em;
+  margin-right: 2em;
+  width: 90%;
 }

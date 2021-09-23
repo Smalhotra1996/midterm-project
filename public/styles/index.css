@@ -7,27 +7,26 @@ main {
   margin: 1em;
   background-color: #ffffff;
 
+}
+
+h2 {
+  display: flex;
+  align-self: center;
+  margin: 1em;
 
 }
 
-main h2 {
-  margin: 0.5em;
-}
-.card-img-top {
 
-  width: 100%;
+img.card-img-top {
+
+  width:100% ;
   height: 20vw;
   object-fit: cover;
 }
 #btn-start-quize:hover{
-  background-color: #4191a7;
+  background-color: #74c1d6;
 }
 
-main h2 {
-  display: flex;
-  align-self: center;
-
-}
 
 #btn-start-quize{
    background-color: #07495c;
@@ -37,4 +36,12 @@ main h2 {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.col-12 col-lg-3{
+  background-color: darkslateblue;
+}
+.card-img-top:hover{
+  border: 5px solid  #07495c;
+  box-shadow: #60a7bb;
 }
