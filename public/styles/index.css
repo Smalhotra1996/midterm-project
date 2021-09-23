@@ -7,18 +7,19 @@ main {
   margin: 1em;
   background-color: #ffffff;
 
-
 }
 
-main h2 {
+h2 {
   display: flex;
   align-self: center;
   margin: 1em;
-  color: #093e4d;
-}
-.card-img-top {
 
-  width: 95%%;
+}
+
+
+img.card-img-top {
+
+  width:100% ;
   height: 20vw;
   object-fit: cover;
 }

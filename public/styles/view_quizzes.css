@@ -8,11 +8,11 @@ h2{
 img{
   display: flex;
   justify-content: center;
-  width: 60%;
-  height: 20vw;
+  width: 90%;
+  height: 15vw;
   object-fit: cover;
-  margin-left: 5em;
-  margin-top: 1em;
+
+  margin: 1em;
 }
 .container all-quizzes{
   display: flex;
@@ -24,12 +24,12 @@ img{
 
 div:nth-child(3)  div  a{
   margin-left: 22m;
-display: flex;
+  display: flex;
   justify-content: center;
   background-color: #17a2b8;
  }
  .card-text{
-  font-size:19px;
+  font-size:.85em;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

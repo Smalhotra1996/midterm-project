@@ -22,7 +22,7 @@
       <h2>Public Quizzes</h2>
       <div class="row">
         <% for (const quiz of quizzes) {%>
-          <div class="col-sm-6">
+          <div class="col-sm-3">
             <div class="card">
               <div>
                 <img src="<%= quiz.photo_url %>" alt="">
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div>
-                <div  style="background-color: #42a9c5; border:none;" id="card-body-link">
+                <div  style="background-color: #4191a7; border:none;" id="card-body-link">
                   <a href="/quizzes/<%=quiz.id%>" target="" class="btn btn-primary">Start Quiz</a>
                 </div>
               </div>
