@@ -1,13 +1,14 @@
-body > h1{
-  padding-left: 1em;
-  margin-left: 1;
-  background-color: #ffffff;
+h1{
+  margin-left: 1em;
 }
-
+main {
+  background-color: #f8f9fa;
+}
 .user-quiz-details-page{
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 
 }
 
@@ -22,4 +23,15 @@ body > h1{
 .btn-outline-info {
   margin-left: 2em;
   margin-right: 1em;
+}
+
+
+div.quize_detials{
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  padding: 2em;
+}
+.category {
+  margin-left: 1em;
 }

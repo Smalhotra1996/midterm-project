@@ -41,12 +41,15 @@
       </div>
       <!-- update quiz details -->
       <form method="POST" action="/users/<%= quiz.creator_id %>/quizzes/<%= quiz.quiz_id %>?_method=PUT" class="new-details">
-      <div style="margin: 1em">
+      <div  class='quize_detials'>
+        <div>
           <label>Title:</label><input type="text" name="title" value="<%= quiz.title %>" require>
-          <label>Description:</label><input type="text" name="description" value="<%= quiz.description %>" require>
-          <br>
+          <label class="category">Category:</label><input type="text" name="category" value="<%= quiz.category %>" require>
+
+        </div>
           <label>Photo Url:</label><input type="text" name="photo_url" value="<%= quiz.photo_url %>" require>
-          <label>Category:</label><input type="text" name="category" value="<%= quiz.category %>" require>
+          <label>Description:</label><input type="text" name="description" value="<%= quiz.description %>" require>
+
           <br>
           <label>Public Visibility: False</label>
           <% if (!quiz.visibility) { %>

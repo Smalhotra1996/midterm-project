@@ -1,6 +1,9 @@
 h1 {
   margin-left: 2em;
 }
+main{
+  background-color: #ffffff;
+}
 form:nth-child(1) button{
   border:none;
 }
