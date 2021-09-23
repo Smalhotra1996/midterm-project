@@ -35,3 +35,6 @@ div.quize_detials{
 .category {
   margin-left: 1em;
 }
+img{
+  max-width: 35%;
+}

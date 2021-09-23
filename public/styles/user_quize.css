@@ -23,3 +23,12 @@ body > h1{
   margin-left: 2em;
   margin-right: 1em;
 }
+.quiz-photo{
+  max-width: 35%;
+}
+
+.user-quiz-buttons{
+  margin-bottom: 2em;
+  margin-top: 0%;
+ padding-top: 0;
+}
