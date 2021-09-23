@@ -31,7 +31,7 @@
             <div class = "que">
               <h5><%= question.question %></h5>
             </div>
-            <br>
+        
             <div class = "options">
               <% for (const answer of question.answers) { %>
                 <input type="radio" name="<%=question.question_id%>" value="<%= answer.answer_id%>" id="<%= answer.answer_id%>">
