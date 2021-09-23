@@ -92,9 +92,9 @@ function copyUrl() {
         <% } %>
         </div>
         <div class="react">
-          <button class="btn btn-outline-success" onclick="copyUrl();">Share result?</button>
+          <button class="btn btn-primary" onclick="copyUrl();">Share result?</button>
           <form method="GET" action="/quizzes/<%= quiz_id %>">
-            <button id="btn-sapcing" class="btn btn-outline-primary" type="submit">Try again?</button>
+            <button id="btn-sapcing" class="btn btn-primary" type="submit">Try again?</button>
           </form>
         </div>
       <% } else { %>
@@ -117,9 +117,9 @@ function copyUrl() {
           <h3><%= title %></h3>
         </div>
         <div class="react">
-          <button class="btn btn-outline-success" onclick="copyUrl();">Share result?</button>
+          <button class="btn btn-primary" onclick="copyUrl();">Share result?</button>
           <form method="GET" action="/quizzes/<%= quiz_id %>">
-            <button id="btn-sapcing" class="btnbox" type="submit">Try this quiz?</button>
+            <button id="btn-sapcing" class="btn btn-primary" type="submit">Try this quiz?</button>
           </form>
         </div>
       <% } %>
