@@ -1,0 +1,40 @@
+h1{
+  margin-left: 1em;
+}
+main {
+  background-color: #f8f9fa;
+}
+.user-quiz-details-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+}
+
+.quiz-details{
+  padding-left: 2em;
+}
+
+.user-quiz-buttons {
+  display: flex;
+}
+
+.btn-outline-info {
+  margin-left: 2em;
+  margin-right: 1em;
+}
+
+
+div.quize_detials{
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  padding: 2em;
+}
+.category {
+  margin-left: 1em;
+}
+img{
+  max-width: 35%;
+}
