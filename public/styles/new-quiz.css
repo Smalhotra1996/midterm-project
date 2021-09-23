@@ -24,14 +24,7 @@ label{
   border-top:none
 }
 
-.btns{
-  display: flex;
-}
 
-button.btn.btn-outline-danger{
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-}
 tr  td:nth-child(2){
  padding-top:1.5em;
 }
@@ -39,3 +32,8 @@ tr  td:nth-child(1) {
   padding-top: 0;
 }
 
+main form div.btns-left-side{
+  display: flex;
+  border: non;
+
+}
