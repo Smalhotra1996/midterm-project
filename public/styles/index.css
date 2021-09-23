@@ -19,6 +19,9 @@ main h2 {
   height: 20vw;
   object-fit: cover;
 }
+#btn-start-quize:hover{
+  background-color: #4191a7;
+}
 
 main h2 {
   display: flex;
@@ -29,4 +32,9 @@ main h2 {
 #btn-start-quize{
    background-color: #07495c;
  }
-
+ .card-text{
+  font-size:19px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
