@@ -1,0 +1,34 @@
+body > h1{
+  padding-left: 1em;
+  margin-left: 1;
+  background-color: #ffffff;
+}
+
+.user-quiz-details-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.quiz-details{
+  padding-left: 2em;
+}
+
+.user-quiz-buttons {
+  display: flex;
+}
+
+.btn-outline-info {
+  margin-left: 2em;
+  margin-right: 1em;
+}
+.quiz-photo{
+  max-width: 35%;
+}
+
+.user-quiz-buttons{
+  margin-bottom: 2em;
+  margin-top: 0%;
+ padding-top: 0;
+}
